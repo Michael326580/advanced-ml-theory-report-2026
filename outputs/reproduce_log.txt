@@ -1,0 +1,41 @@
+Dataset summary:
+                            Item           Value     Unit                                                Description
+         Cleaned teacher records             500    files file-level records after teacher demodulation and cleaning
+Pseudo-labelled waveform samples            4310 segments                         segment-level dual-channel samples
+                  Training split            3454 segments     training segments inferred from total minus validation
+                Validation split             100    files                       file-level hold-out validation files
+                Validation split             856 segments                           segment-level validation samples
+              Displacement range     180.0-229.9       mm                              calibrated displacement range
+             Teacher width range 18.6125-28.9355    pixel                      teacher-generated fringe width labels
+              Teacher width mean         23.0138    pixel                                         mean teacher width
+                     Input shape          2x2048  samples                                dual-channel waveform input
+
+Main comparison:
+                       Method  MAE_mm  RMSE_mm  MaxAE_mm           Mean_latency                          Timing_note
+       Teacher/PCCC reference  0.0678   0.0858    0.2999 1.1574 ms/segment core deterministic teacher core reference
+            Attention student  0.1166   0.1530    0.5641      10.2508 ms/sample                  PyTorch CPU batch=1
+              Plain FFT table  0.1761   0.2088    0.7149       3.1660 ms/sample               classical FFT baseline
+          Clean plain_cnn_w24  0.0994   0.1410    0.6236       0.8898 ms/sample             selected compact student
+Robust plain_cnn_w24 ablation  0.1046   0.1447    0.6341       0.9141 ms/sample      augmentation-finetuned ablation
+
+Fast student ablation:
+        Model  Params  MACs_M  Best_epoch  Seg_W_MAE_px  File_W_MAE_px  Pos_MAE_mm  RMSE_mm  MaxAE_mm  Mean_ms  P95_ms
+plain_cnn_w16   26817   6.324         102       0.03214        0.02469    0.130667 0.184175  0.632259 0.656628 0.98854
+plain_cnn_w24   59809  14.008         218       0.02826        0.01934    0.099356 0.140978  0.623556 0.889776 1.09765
+plain_cnn_w32  105857  24.707         214       0.02813        0.01848    0.104577 0.145060  0.615766 1.175552 1.48814
+
+Robustness results:
+             Condition  Clean_w24_MAE_mm  Robust_w24_MAE_mm  FFT_proxy_MAE_mm                                                        Interpretation
+                 Clean            0.0994             0.1046            0.1869                        robust model sacrifices limited clean accuracy
+        Gaussian 0.005            0.4422             0.1054            0.1871               robust training improves OOD Gaussian-noise sensitivity
+         Gaussian 0.01            1.0826             0.1049            0.1876               robust training improves OOD Gaussian-noise sensitivity
+   Baseline drift 0.02            0.1001             0.1118            0.1869 both neural models remain stable; robust is slightly worse than clean
+   Baseline drift 0.05            0.1063             0.1333            0.1869         robust remains better than FFT proxy but worse than clean w24
+    Channel shift 1 px            0.4333             0.1347            0.1873                          robust training improves small channel shift
+    Channel shift 2 px            0.7099             0.2497            0.1873                 robust improves clean w24 but is worse than FFT proxy
+Amplitude scaling 0.02            0.3911             0.1969            0.1869                           robust improves clean w24 but not FFT proxy
+Amplitude scaling 0.05            1.5031             0.7564            0.1868                              amplitude scaling remains a failure case
+     Spike noise 0.001            0.3373             0.2960            0.1879                                    spike noise remains a failure case
+     Spike noise 0.005            1.1108             1.1757            0.1887             robust model does not improve this stronger spike setting
+
+Reproduced outputs saved to: /mnt/data/course_submission_conoscopy/outputs

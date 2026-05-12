@@ -1,0 +1,2 @@
+n_samples,teacher_width_mae_px,teacher_position_mae_mm,cnn_demo_available,cnn_val_width_mae_px,cnn_val_position_mae_mm
+60.0,0.02201649360358715,0.09904327243566513,1.0,2.550554037094116,12.534232139587402

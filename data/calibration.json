@@ -1,0 +1,10 @@
+{
+  "model": "x_hat = a / (W_hat - b) + c",
+  "a": 2485.85,
+  "b": 0.489856,
+  "c": 92.7040,
+  "r2": 0.999967,
+  "width_unit": "pixel",
+  "displacement_unit": "mm",
+  "detector_pitch": "14 um/pixel, detector sampling interval only"
+}

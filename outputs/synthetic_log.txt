@@ -1,0 +1,3 @@
+ n_samples  teacher_width_mae_px  teacher_position_mae_mm  cnn_demo_available  cnn_val_width_mae_px  cnn_val_position_mae_mm
+      60.0              0.022016                 0.099043                 1.0              2.550554                12.534232
+Synthetic demo outputs saved to: /mnt/data/course_submission_conoscopy/outputs

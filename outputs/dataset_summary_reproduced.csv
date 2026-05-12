@@ -1,0 +1,10 @@
+Item,Value,Unit,Description
+Cleaned teacher records,500,files,file-level records after teacher demodulation and cleaning
+Pseudo-labelled waveform samples,4310,segments,segment-level dual-channel samples
+Training split,3454,segments,training segments inferred from total minus validation
+Validation split,100,files,file-level hold-out validation files
+Validation split,856,segments,segment-level validation samples
+Displacement range,180.0-229.9,mm,calibrated displacement range
+Teacher width range,18.6125-28.9355,pixel,teacher-generated fringe width labels
+Teacher width mean,23.0138,pixel,mean teacher width
+Input shape,2x2048,samples,dual-channel waveform input

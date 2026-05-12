@@ -1,0 +1,12 @@
+Condition,Clean_w24_MAE_mm,Robust_w24_MAE_mm,FFT_proxy_MAE_mm,Interpretation
+Clean,0.0994,0.1046,0.1869,robust model sacrifices limited clean accuracy
+Gaussian 0.005,0.4422,0.1054,0.1871,robust training improves OOD Gaussian-noise sensitivity
+Gaussian 0.01,1.0826,0.1049,0.1876,robust training improves OOD Gaussian-noise sensitivity
+Baseline drift 0.02,0.1001,0.1118,0.1869,both neural models remain stable; robust is slightly worse than clean
+Baseline drift 0.05,0.1063,0.1333,0.1869,robust remains better than FFT proxy but worse than clean w24
+Channel shift 1 px,0.4333,0.1347,0.1873,robust training improves small channel shift
+Channel shift 2 px,0.7099,0.2497,0.1873,robust improves clean w24 but is worse than FFT proxy
+Amplitude scaling 0.02,0.3911,0.1969,0.1869,robust improves clean w24 but not FFT proxy
+Amplitude scaling 0.05,1.5031,0.7564,0.1868,amplitude scaling remains a failure case
+Spike noise 0.001,0.3373,0.296,0.1879,spike noise remains a failure case
+Spike noise 0.005,1.1108,1.1757,0.1887,robust model does not improve this stronger spike setting
